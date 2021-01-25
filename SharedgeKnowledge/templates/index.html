@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		PANEL PRINCIPAL | Shared Knowledge		
+	</title>
+	{% load static %}
+	<link rel="icon" href="{% static 'img/book-2852903_1920.ico' %}">
+	<meta charset="utf-8">
+	<meta name="keywords" content="apuntes, estudio, materias, estudiar, conocimiento, compartir">
+	<meta name="description" content="Shared Knowledge es una página web que permite encontrar y compartir todo tus conocimientos, con otros estudiantes.Unete a la Red social de apuntes">
+	<meta name="author" content="Fernández Ian Santiago">
+	<meta name="robots" content="index">
+	<meta name="robots" content="follow">
+	<meta name="robots" content="translate">
+	
+	<link rel="stylesheet" type="text/css" href="{%  static 'css/estilo.css' %}">
+</head>
+<body>
+	<div>
+		<header>	
+			<ul><img src="{% static 'img/laptop-2282328_1280.png' %}" height="100px" 	width="100px" alt="Sharedge" title="Icono de Sharedge Knowledge"></ul>
+			<ul><a href="{% url 'index' %}"> Sharedge </a> <i></ul>
+			<ul><a href="#">  ¿Quienes Somos?</a></i></ul> 
+		</header>
+	</div>
+
+	<div>
+		<div>
+			<h2> UN SITIO IDEAL PARA COMPARTIR TUS APUNTES... COMO OBRAS DE ARTE </h2>
+			<h3><b><a href="{% url 'Login' %}"> INICIAR </a></b></h4>
+		
+		</div>
+	</div>
+
+	<div>	
+		<footer>
+		<h4><a href="#"> Sharedge </a> <i><b>| Pagina Creada por Fernandez Ian </b></h4></i>
+		<h4>Contacta al creador</h4>
+		<a href="https://www.linkedin.com/in/ian-fern%C3%A1ndez-a72598179/" target="_blank"><img src="{% static 'img_templates/linked-in-2668696_1280.png' %}" height="50px" width="50px" alt="	Linkedin" title="Icono de Linkedin" ></a>
+		</footer>
+	</div>
+	
+</body>
+</html>

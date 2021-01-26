@@ -12,3 +12,13 @@ class RegistrationForm(UserCreationForm):
                 'email',
                 'first_name',
                 'last_name']
+
+class UpdateForm(forms.ModelForm):
+    #Formulario para registrar una cuenta
+    class Meta:
+        model = User
+        fields = [
+                'username',
+                'email',
+                'first_name',
+                'last_name']

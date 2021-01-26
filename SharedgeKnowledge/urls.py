@@ -22,6 +22,8 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('SharedgeKnowledge.apps.Accounts.url')),
+    path('', include('SharedgeKnowledge.apps.Wall.urls')),
+    path('', include('SharedgeKnowledge.apps.Create_Post.urls')),
 ]
 
 urlpatterns += [

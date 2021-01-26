@@ -1,16 +1,23 @@
 from django.shortcuts import render
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UpdateForm
 from django.contrib import messages
 # Create your views here.
 
 def inicio(request):
     return render(request,'index.html')
 
-def muro_aux(request): #ELIMINAR CUANDO SE CREE LA APP WALL
-    return render(request,'Wall/muro_apuntes.html')
-
 def inicioSesion(request):
     return render(request,'Accounts/inicioSesion.html')
+
+def update(request):
+    if request.method == 'POST':
+        u_fm = UpdateForm(data=request.POST, instance=request.user)
+        if u_fm.is_valid():
+            u_fm.save()
+            messages.success(request, 'Profile Update')
+    else:
+        u_fm = UpdateForm(instance=request.user)
+    return render(request, 'Accounts/update-profile.html',{'u_fm':u_fm})
 
 def registration(request):
     #El metodo POST se utilizado para mandar algun tipo de recurso al servidor y causar un impacto.

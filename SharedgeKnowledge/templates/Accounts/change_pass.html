@@ -16,24 +16,22 @@
 </head>
 <body>	
 	<div>
-		<h4>Iniciar Sesión</h4>
-		<p>{% if form.non_field.errors %}
-			{% for error in form.non_field_errors %}
-				{{error}}
-			{% endfor %}
-			{% endif %}</p>		
+		<h4>Actualizar contraseña</h4>	
 		<form method="POST">
 				{% csrf_token %}
-			<div><b> {{form.username.errors}} </b> </div>
-			<div><b> {{form.username.label}} </b> <b> {{form.username}} </b> </div>
+			<div><b> {{form.old_password.errors}} </b> </div>
+			<div><b> {{form.old_password.label}} </b> <b> {{form.old_password}} </b> </div>
 			<br>
 			<br>
-			<div><b>{{form.password.errors}}</b></div>
-			<div><b>{{form.password.label}}</b><b>{{form.password}}</b></div>
+			<div><b>{{form.new_password1.errors}}</b></div>
+			<div><b>{{form.new_password1.label}}</b><b>{{form.new_password1}}</b></div>
 			<br>
-			<br>
+            <br>
+            <div><b>{{form.new_password2.errors}}</b></div>
+            <div><b>{{form.new_password2.label}}</b><b>{{form.new_password2}}</b></div>
+            <br>
+            <br>
 			<div><input type="submit"></div>
-			<div><a href="{% url 'Register' %}">Registrarme</a></div>
 			
 		</form>
 	</div>

@@ -1,0 +1,28 @@
+Temario para el practico N°1 Analisis de sistemas : 
+
+
+-. Determinacion del problema : No dar opiniones personales porque no hacen al ejercicio
+				Si esta bueno justificar el problema detectado mediante citas del enunciado
+
+-. Las 5C : Siempre que no sea descabellada o fuera de lugar una de las causas para empezar un proyecto, estas pueden ser hasta las 5.
+	    Se tiene que dar una buena justificacion de la causa, puede ser con citas del enunciado. 
+
+-. Re definicion del problema : De forma sencilla y no tan detallada se pueden enumerar con items los problemas
+				No hace falta redactar todo el problema, sino ser mas especifico con que se detectó.
+
+-. Soluciones sistematica : Las soluciones sistematicas no deben ser muy amplias, deben integrar que actividades se podrá hacer en el sistema
+			    Que ayude a solucionar el problema, si puede ser detallado y debe indicar quienes usaran esas soluciones. 
+
+-. Factibilidad del sistema : Determinar si el sistema será factible significa estudiar si es posible y necesario llevar adelante el sistema de información
+			      Para hacer un estudio de la viabilidad Se trata de enumerar cada item en el punto en donde será factible o no y justificar
+			      Al final de cada aspecto, indicar si será viable o no, desde ese punto de vista 
+
+-. Alcance del producto
+
+-. Objetivos corporativos y Procesos
+
+-. Funciones del sistema
+
+-. Requerimientos del negocio, requerimientos del usuario, requisitos del software 
+
+-. Entrevistas

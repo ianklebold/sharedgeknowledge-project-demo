@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 LOGIN_REDIRECT_URL = 'wall'
+LOGOUT_REDIRECT_URL = 'index'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -32,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SharedgeKnowledge.apps.Accounts.apps.AccountsConfig',
+    'SharedgeKnowledge.apps.Wall',
+    'SharedgeKnowledge.apps.Create_Post',
 ]
 
 MIDDLEWARE = [

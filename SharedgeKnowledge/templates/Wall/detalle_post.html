@@ -1,0 +1,36 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detalle post</title>
+</head>
+<body>
+	<h3>Detalle de la publicacion</h3>
+	<hr>
+	<div> {{publicaciones.titulo}} <strong> creado por : </strong>	@{{publicaciones.user.username}}	</div>
+
+	{%if publicaciones.texto%}
+	<div> {{publicaciones.texto}} </div>
+	{% endif %}
+
+	{%if publicaciones.video%}
+	<div> {{publicaciones.video}} </div>
+	{% endif %}
+
+	{%if publicaciones.enlace_web%}
+	<div> {{detalle_post.enlace_web}}		</div>
+	{% endif %}
+
+	{%if publicaciones.imagen%}
+	<div><form><a href="{{publicaciones.imagen.url}}" ><img src="{{publicaciones.imagen.url}}" alt="esta es una foto"></a></form></div>
+	{% endif %}
+	
+	<div>{{publicaciones.archivo.name}}</div>
+	<div><a href="{{publicaciones.archivo.url}}" enctype="multipart/form-data">Descargá este apunte</a></div>
+	<div> <strong>Categoria : </strong> {{publicaciones.categoria}} | <strong>Publicacion :</strong> <i><time datetime="#"> {{publicaciones.fecha_creacion|naturaltime}}</time></i></div>
+
+	<div><a href="{% url 'editar_post' %}"> Edita tu apunte </a>
+	
+	<hr>
+</body>
+</html>

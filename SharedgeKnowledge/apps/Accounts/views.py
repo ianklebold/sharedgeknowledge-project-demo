@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from SharedgeKnowledge.apps.Create_Post.models import Post
 from .forms import RegistrationForm, UpdateForm
 from django.contrib import messages
+from django.contrib.auth.models import User
 # Create your views here.
 
 def inicio(request):
@@ -8,6 +10,18 @@ def inicio(request):
 
 def inicioSesion(request):
     return render(request,'Accounts/inicioSesion.html')
+
+def profile(request, username=None):
+    current_user = request.user
+    if username and username != current_user.username:
+        user = User.objects.get(username=username)
+        posts = user.posts.all()
+
+    else:
+        posts = current_user.posts.all()
+        user = current_user
+    return render(request, 'Accounts/Perfil.html',{'user':user,'posts':posts})
+
 
 def update(request):
     if request.method == 'POST':

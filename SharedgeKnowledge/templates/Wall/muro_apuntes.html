@@ -1,3 +1,4 @@
+{% load humanize %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 			</div> 
 			<div>
 				<ul>
-					<a href="#"> Crear Post</a>
+					<a href="{% url 'crear_post' %}"> Crear Post</a>
 				</ul>
 			</div>
 			<div>
@@ -44,19 +45,20 @@
 	</div>
 
 	<div>
-		<a href="#">@Usuario</a>
-		<div><h3>Titulo del post</h3></div>
-
-		<div><p>Texto</p></div>
-
-		<h4><i>Creado : </i></h4>
+		{% for post in publicaciones %}
+		<a href="{% url 'profile' post.user.username%}">@{{post.user.username}}</a>
+		<div><h3><a href="{% url 'mostrarDetalle' post.titulo %}">{{post.titulo}}</a></h3></div>
+			{% if post.texto %}
+		<div><p>{{post.texto}}</p></div>
+			{% endif %}
+		<h4><i>Creado : {{post.fecha_creacion|naturaltime}}</i></h4>
 
 		<div>
 			<ol><a href="#">Me gusta</a></ol>
 			<ol><a href="#">Guardar</a></ol>
 			<ol><a href="#">Escribir Comentario</a></ol>
 		</div>
-
+		{% endfor %}
 	</div>
 
 	<div>	

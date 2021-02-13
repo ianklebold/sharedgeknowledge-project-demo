@@ -29,8 +29,10 @@
 	<div><a href="{{publicaciones.archivo.url}}" enctype="multipart/form-data">Descargá este apunte</a></div>
 	<div> <strong>Categoria : </strong> {{publicaciones.categoria}} | <strong>Publicacion :</strong> <i><time datetime="#"> {{publicaciones.fecha_creacion|naturaltime}}</time></i></div>
 
-	<div><a href="{% url 'editar_post' %}"> Edita tu apunte </a>
-	
+	{% if user.username == publicaciones.user.username %}
+	<a href="{%url 'update_post' publicaciones.id %}"> Edita tu post aqui</a>
+	<a href="{%url 'delete_post' publicaciones.id %}"> Eliminar</a>
+	{% endif %}
 	<hr>
 </body>
 </html>

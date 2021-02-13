@@ -16,7 +16,6 @@ def profile(request, username=None):
     if username and username != current_user.username:
         user = User.objects.get(username=username)
         posts = user.posts.all()
-
     else:
         posts = current_user.posts.all()
         user = current_user

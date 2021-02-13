@@ -14,4 +14,5 @@ class formPost(forms.ModelForm):
 class UpdateForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['titulo', 'texto', 'video', 'enlace_web','imagen','archivo']
+        fields = ['titulo', 'texto', 'video', 'enlace_web']
+        ordering = ['-fecha_creacion']

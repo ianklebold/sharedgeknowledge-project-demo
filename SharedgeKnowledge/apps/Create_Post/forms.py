@@ -9,10 +9,3 @@ class formPost(forms.ModelForm):
         model = Post
         fields = ['categoria', 'titulo', 'texto', 'video', 'enlace_web','imagen','archivo']
         ordering = ['-fecha_creacion']
-
-
-class UpdateForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['titulo', 'texto', 'video', 'enlace_web']
-        ordering = ['-fecha_creacion']

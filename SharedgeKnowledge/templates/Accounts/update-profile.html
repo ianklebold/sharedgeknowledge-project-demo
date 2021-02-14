@@ -22,7 +22,7 @@
 		<b>{{message}}</b>
 		{% endfor %}
 		{% endif %}
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 				<div><b>{{u_fm.username.errors}}</b></div>
 				<div><b>{{u_fm.username.first_name}}</b></div>
@@ -33,8 +33,7 @@
 				<div><b>{{u_fm.first_name.label}}</b> <b>{{u_fm.first_name}}</b></div>
 				<div><b>{{u_fm.last_name.errors}}</b></div>
 				<div><b>{{u_fm.last_name.label}}</b> <b>{{u_fm.last_name}}</b> </div>
-
-
+						{{i_fm.as_p}}
 				<div><a href="{% url 'change-pass'%}">¿Deseas cambiar tu contraseña?</a></div>
 			<div><input type="submit"></div>
 			

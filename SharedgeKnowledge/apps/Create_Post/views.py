@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import formPost, UpdateForm
+from .forms import formPost
 from .models import Post
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -32,9 +32,9 @@ def crear_post(request):
 def update_post(request, id_post):
     post = Post.objects.get(id=id_post)
     if request.method == 'GET':
-        form = UpdateForm(instance=post)
+        form = formPost(instance=post)
     else: 
-        form = UpdateForm(request.POST, instance = post)
+        form = formPost(data=request.POST, files=request.FILES , instance = post)
         if form.is_valid:
             form.save()
         return redirect('wall')
@@ -46,4 +46,4 @@ def delete_post(request, id_post):
     if request.method == 'POST':
         post.delete()
         return redirect('wall')    
-    return render(request, 'crear_post/eliminar_post.html', {'post': post})
+    return render(request, 'crear_post/delete_post.html', {'post': post})

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from SharedgeKnowledge.apps.Create_Post.models import Post
-from .forms import RegistrationForm, UpdateForm
+from .models import Profile
+from .forms import RegistrationForm, UpdateForm, UpdateImage
 from django.contrib import messages
 from django.contrib.auth.models import User
 # Create your views here.
@@ -24,13 +25,16 @@ def profile(request, username=None):
 
 def update(request):
     if request.method == 'POST':
-        u_fm = UpdateForm(data=request.POST, instance=request.user)
-        if u_fm.is_valid():
+        u_fm = UpdateForm(data=request.POST ,instance=request.user)
+        i_fm = UpdateImage(data=request.POST, files=request.FILES  ,instance=request.user.profile)
+        if u_fm.is_valid() and i_fm.is_valid():
             u_fm.save()
+            i_fm.save()
             messages.success(request, 'Profile Update')
     else:
         u_fm = UpdateForm(instance=request.user)
-    return render(request, 'Accounts/update-profile.html',{'u_fm':u_fm})
+        i_fm = UpdateImage(instance=request.user.profile)
+    return render(request, 'Accounts/update-profile.html',{'u_fm':u_fm, 'i_fm':i_fm})
 
 def registration(request):
     #El metodo POST se utilizado para mandar algun tipo de recurso al servidor y causar un impacto.

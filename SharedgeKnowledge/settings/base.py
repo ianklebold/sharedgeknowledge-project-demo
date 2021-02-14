@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'SharedgeKnowledge.apps.Accounts.apps.AccountsConfig',
     'SharedgeKnowledge.apps.Wall',
     'SharedgeKnowledge.apps.Create_Post',
+    'SharedgeKnowledge.apps.comentarios',
 ]
 
 MIDDLEWARE = [

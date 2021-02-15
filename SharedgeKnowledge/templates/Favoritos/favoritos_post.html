@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mis Post Favoritos</title>
+</head>
+<body>
+	<div>
+		{% for destacado in destacados %}
+		<div><h3>{{destacado.titulo}}</h3></div>
+
+		<div><p>{{destacado.descripcion}}</p></div>
+
+		<div>
+			<a href="{% url 'mostrarDetalle' destacado.referencia_post %}">Ir a la publicacion</a>
+			<a href="{% url 'editar_destacado' destacado.id %}">Editar</a>
+			<a href="{% url 'eliminar_destacado' destacado.id %}">Eliminar</a>
+		</div>
+		{% endfor %}
+	</div>
+
+
+</body>
+</html>

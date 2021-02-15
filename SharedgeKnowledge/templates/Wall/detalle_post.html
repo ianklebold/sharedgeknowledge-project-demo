@@ -32,6 +32,8 @@
 	{% if user.username == publicaciones.user.username %}
 	<a href="{%url 'update_post' publicaciones.id %}"> Edita tu post aqui</a>
 	<a href="{%url 'delete_post' publicaciones.id %}"> Eliminar</a>
+	{% else %}
+	<a href="{%url 'marcar_destacado' publicaciones.id  %}"> Guardar en mis favoritos </a>
 	{% endif %}
 	<hr>
 </body>

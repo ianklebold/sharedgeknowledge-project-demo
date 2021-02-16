@@ -28,26 +28,19 @@
 				</ul>
 			</div> 
 			<div>
-				<ul>
-					<ol><a href="{% url 'crear_nota' %}">Crear Nota</a></ol>
-					<a href="{% url 'crear_post' %}"> Crear Post</a>
-				</ul>
+				<ol><a href="{% url 'crear_nota' %}">Crear Nota</a></ol>
+				<ul><a href="{% url 'crear_post' %}"> Crear Post</a></ul>
 			</div>
 			<div>
-				<ul>
-					<a href="{% url 'listar_destacados' %}">Mis Favoritos</a>
-				</ul>
-			</div>
-			<div>
-				<ol><a href="{% url 'profile' user.username %}">Ver perfil</a></ol>
+				<ol><a href="{% url 'profile' user.username%}">Ver perfil</a></ol>
 				<ol><a href="{% url 'update-profile' %}">Editar perfil</a></ol>
 				<ul><a href="{% url 'listar_destacados' %}">Mis Favoritos</a></ul>
 				<ol><a href="{% url 'Logout' %}">Cerrar Sesión</a></ol>
 			</div>
 
-			<nav>
+            <nav>
                 <ul>
-                    <li>  <a href="{% url 'wall_notas' %}"> Solo Notas </a>   </li>
+                    <li>  <a href="{% url 'wall' %}"> Solo apuntes </a>   </li>
                 </ul>
 
             </nav>
@@ -56,19 +49,13 @@
 	</div>
 
 	<div>
-		{% for post in publicaciones %}
-		<a href="{% url 'profile' post.user.username%}">@{{post.user.username}}</a>
-		<div><h3><a href="{% url 'mostrarDetalle' post.titulo %}">{{post.titulo}}</a></h3></div>
-			{% if post.texto %}
-		<div><p>{{post.texto}}</p></div>
-			{% endif %}
-		<h4><i>Creado : {{post.fecha_creacion|naturaltime}}</i></h4>
-
-		<div>
-			<ol><a href="#">Me gusta</a></ol>
-			<ol><a href="#">Guardar</a></ol>
-			<ol><a href="#">Escribir Comentario</a></ol>
-		</div>
+		{% for nota in notas %}
+		<a href="{% url 'profile' nota.user.username%}">@{{nota.user.username}}</a>
+		<div><h3><a href="{% url 'DetalleNota' nota.titulo %}">{{nota.titulo}}</a></h3></div>
+			
+		<div><p>{{nota.texto}}</p></div>
+			
+		<h4><i>Creado : {{nota.fecha_creacion|naturaltime}}</i></h4>
 		{% endfor %}
 	</div>
 

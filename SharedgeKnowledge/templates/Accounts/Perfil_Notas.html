@@ -1,0 +1,29 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{user.username}}</title>
+</head>
+<body>
+	<h3>Perfil de {{user.username}} </h3>
+	<div> Nombre : {{user.first_name}} </div>
+	<div> Apellido : {{user.last_name}} </div>
+
+	<div>Imagen : <form><img src="{{user.profile.image.url}}" height="100px" width="100px" alt="Imagen Perfil de {{user.username}}" ></form></div>
+	<hr>
+
+	<div>
+        <ul><a href="{% url 'profile' user.username %}">  Mostrar Publicaciones </a></ul>
+		{% for nota in notas %}
+		<a href="{% url 'profile' nota.user.username%}">@{{nota.user.username}}</a>
+		<div><h3><a href="{% url 'DetalleNota' nota.titulo %}">{{nota.titulo}}</a></h3></div>
+			
+		<div><p>{{nota.texto}}</p></div>
+			
+		<h4><i>Creado : {{nota.fecha_creacion|naturaltime}}</i></h4>
+		{% endfor %}
+	</div>
+
+
+</body>
+</html>

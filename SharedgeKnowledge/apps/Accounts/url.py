@@ -15,5 +15,6 @@ urlpatterns = [
     path('password-change-done/',authview.PasswordChangeDoneView.as_view(template_name="Accounts/inicioSesion.html"),name='password_change_done'),
     path('update-profile/',login_required(views.update), name="update-profile"),
     path('profile/<str:username>/', login_required(views.profile), name='profile'),
+    path('profile/<str:username>/notas/', login_required(views.profile_notas), name='profile_notas'),
     
 ]

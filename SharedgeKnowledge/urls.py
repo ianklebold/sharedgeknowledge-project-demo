@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('SharedgeKnowledge.apps.Wall.urls')),
     path('', include('SharedgeKnowledge.apps.Create_Post.urls')),
     path('', include('SharedgeKnowledge.apps.Favoritos.urls')),
+    path('', include('SharedgeKnowledge.apps.Notas.urls')),
 ]
 
 urlpatterns += [

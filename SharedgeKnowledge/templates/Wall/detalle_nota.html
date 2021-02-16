@@ -1,0 +1,24 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detalle de Nota</title>
+</head>
+<body>
+	<h3>Detalle de la publicacion</h3>
+	<hr>
+	<div> {{nota.titulo}} <strong> creado por : </strong>	@{{nota.user.username}}	</div>
+
+	<div> {{nota.texto}} </div>
+	{% if nota.enlace %}
+	<div> {{nota.enlace}}		</div>
+	{% endif %}
+	<strong>Publicacion :</strong> <i><time datetime="#"> {{nota.fecha_creacion|naturaltime}}</time></i></div>
+
+	{% if user.username == nota.user.username %}
+	<a href="{%url 'update_nota' nota.id %}"> Edita tu post aqui</a>
+	<a href="{%url 'delete_nota' nota.id %}"> Eliminar</a>
+	{% endif %}
+	<hr>
+</body>
+</html>

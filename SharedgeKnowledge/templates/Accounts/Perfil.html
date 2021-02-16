@@ -13,6 +13,7 @@
 	<hr>
 
 	<div>
+		<ul><a href="{% url 'profile_notas' user.username %}"> Mostrar Notas</a>  </ul>
 		{% for post in posts %}
 		<a href="{% url 'profile' post.user.username%}">@{{post.user.username}}</a>
 		<div><h3><a href="{% url 'mostrarDetalle' post.titulo %}">{{post.titulo}}</a></h3></div>

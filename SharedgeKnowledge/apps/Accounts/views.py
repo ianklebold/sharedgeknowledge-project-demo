@@ -22,6 +22,16 @@ def profile(request, username=None):
         user = current_user
     return render(request, 'Accounts/Perfil.html',{'user':user,'posts':posts})
 
+def profile_notas(request, username=None):
+    current_user = request.user
+    if username and username != current_user.username:
+        user = User.objects.get(username=username)
+        notas = user.notas.all()
+    else:
+        notas = current_user.notas.all()
+        user = current_user
+    return render(request, 'Accounts/Perfil_Notas.html',{'user':user,'notas':notas})
+
 
 def update(request):
     if request.method == 'POST':

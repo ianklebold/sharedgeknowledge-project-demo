@@ -1,0 +1,115 @@
+body{
+	background-image: url(books-2596809_960_720.jpg);
+	background-size: 1024px 768px;
+}
+a{
+	text-decoration: none;
+}
+
+#contenedor-salida{
+	display: block;
+	position: absolute;
+	margin-left: 688px;
+
+
+}
+#contenedor-salida a{
+	font-family: 'Roboto', sans-serif;
+	color: #fff4d6;
+}
+#cont-h2 {
+	display: block;
+	text-align: center;
+	margin-top: 80px;
+	margin-left: 200px;
+	width: 300px;
+	height: 100px;
+	position: absolute;
+	border-top: #fff4d6 solid;
+	border-bottom: #fff4d6 solid;
+	box-shadow: 0 0 20px #fff4d6;
+
+
+}
+#contenedor-titulo{
+	display: block;
+	position: absolute;
+	margin-top: 35px;
+	margin-left: 100px;
+	font-family: 'Roboto', sans-serif;
+	color: #fff4d6;
+}
+
+#contenedor-principal{
+	width: 700px;
+	height: 500px;
+	background-color: rgba(30, 30, 25,0.85);
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 70px;
+}
+
+#contenedor-principal #inicio-pagina{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#contenedor-principal #inicio-pagina #boton-inicio{
+	width: 200px;
+	height: 50px;
+	display: block;
+	background-color: rgba(30, 30, 25,0.88);
+	position: absolute;
+	margin: 320px auto ;
+	margin-left: 254px;
+	box-shadow: 0 0 5px #fff4d6;
+}
+#boton-inicio a{
+ 	display: inline-block;
+ 	margin-right: 5px;
+ 	padding-left: 80px;
+ 	padding-right: 72.5px;
+ 	padding-top: 15px;
+ 	padding-bottom: 15px;
+ 	text-align: center;
+ 	font-family: 'Roboto', sans-serif;
+ 	color: #fff4d6;
+ 	border-top: 0.7px #fff4d6 solid;
+	border-bottom: 0.7px #fff4d6 solid;
+ }
+a:hover{
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+#contenedor-botones{
+	margin-top: 200px;
+	margin-right: auto;
+	margin-left: 70px;
+	position: absolute;
+	width: 600px;
+	height: 100px;
+}
+#contenedor-botones #lista-botones li{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+#contenedor-botones #lista-botones{
+	position: absolute;
+	margin-top: 30px;
+}
+#contenedor-botones #lista-botones li a{
+	display: inline-block;
+	font-family: 'Roboto', sans-serif;
+	color: #fff4d6;
+	padding: 10px 10px 10px 10px;
+	border-top: 1px #fff4d6 solid;
+	border-bottom: 1px #fff4d6 solid;
+	box-shadow: 0 0 5px #fff4d6;
+}
+
+

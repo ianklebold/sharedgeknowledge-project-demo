@@ -13,33 +13,40 @@
 	<meta name="robots" content="index">
 	<meta name="robots" content="follow">
 	<meta name="robots" content="translate">
-	
-	<link rel="stylesheet" type="text/css" href="{%  static 'css/estilo.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_index.css' %}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+	<style type="text/css">
+	  body {
+    	background-image: url({% static 'img/books-2596809_960_720.jpg' %});
+		background-size: 1024px 768px;
+    	 }
+  	</style>
 </head>
 <body>
-	<div>
-		<header>	
-			<ul><img src="{% static 'img/laptop-2282328_1280.png' %}" height="100px" 	width="100px" alt="Sharedge" title="Icono de Sharedge Knowledge"></ul>
-			<ul><a href="{% url 'index' %}"> Sharedge </a> <i></ul>
-			<ul><a href="#">  ¿Quienes Somos?</a></i></ul> 
-		</header>
-	</div>
 
-	<div>
-		<div>
-			<h2> UN SITIO IDEAL PARA COMPARTIR TUS APUNTES... COMO OBRAS DE ARTE </h2>
-			<h3><b><a href="{% url 'Login' %}"> INICIAR </a></b></h4>
-		
+	<section id="contenedor-principal">
+		<div id="contenedor-salida"><a href="https://www.google.com/">	X	</a></div>
+		<div id="cont-h2">
+		<h2 id="contenedor-titulo"> Sharedge </h2>
 		</div>
-	</div>
+		<nav id="contenedor-botones">
+			<ul id="lista-botones">
+				<li><a href="https://www.linkedin.com/in/ian-fern%C3%A1ndez-a72598179/" target="_blank">Contacto</a></li>
+				<li><a href="#">¿Quien soy?</a></li>
+				<li><a href="#">¿Que es Sharedge?</a></li>
+				<li><a href="https://github.com/ianklebold?tab=repositories" target="_blank">Otros proyectos</a></li>
+			</ul>
+		</nav>
 
-	<div>	
-		<footer>
-		<h4><a href="#"> Sharedge </a> <i><b>| Pagina Creada por Fernandez Ian </b></h4></i>
-		<h4>Contacta al creador</h4>
-		<a href="https://www.linkedin.com/in/ian-fern%C3%A1ndez-a72598179/" target="_blank"><img src="{% static 'img_templates/linked-in-2668696_1280.png' %}" height="50px" width="50px" alt="	Linkedin" title="Icono de Linkedin" ></a>
-		</footer>
-	</div>
-	
+		<ul id="inicio-pagina" >
+			<li id="boton-inicio" >
+				<a href="{% url 'Login' %}">INICIO</a>
+			</li>
+		</ul>
+	</section>
+
 </body>
 </html>

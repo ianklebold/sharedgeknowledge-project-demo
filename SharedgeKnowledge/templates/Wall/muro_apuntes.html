@@ -1,9 +1,12 @@
 {% load humanize %}
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Sharedge Knowldge</title>
-	<link rel="icon" href="C:\Users\Santiago\Desktop\Imagenes\book-2852903_1920.ico">
+	{% load static %}
+	<link rel="icon" href="{% static 'img/book-2852903_1920.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_muroapuntes.css' %}">
 	<meta charset="utf-8">
 	<meta name="keywords" content="apuntes, estudio, materias, estudiar, conocimiento, compartir">
 	<meta name="description" content="Shared Knowledge es una página web que permite encontrar y compartir todo tus conocimientos, con otros estudiantes.Unete a la Red social de apuntes">
@@ -11,74 +14,85 @@
 	<meta name="robots" content="index">
 	<meta name="robots" content="follow">
 	<meta name="robots" content="translate">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div>
-		<header>	
-			<ul><img src="C:\Users\Santiago\Desktop\Imagenes\laptop-2282328_1280.png" height="100px" 	width="100px" alt="Sharedge" title="Icono de Sharedge Knowledge"></ul>
-			<ul><i><a href="#"> Sharedge </a> <i></ul>
-			<div>
-				<ul>
-					<nav>
+	<header>
+		<nav id="navegador-page">	
+			<ul>
+				<li id="icono_pagina"> 
+					<a href="{% url 'wall' %}" id="enlace_icono">
+						<img src="{% static 'img/icons8-workstation-96.png' %} " width="98px" height="80px">
+					</a>
+				</li>
+				<li id="buscador_header"> 
 						<form method="GET">
 						<div><input type="text" placeholder="Busca por categoria, titulo.." name="buscar"></div>	
-						<button type="submit" >Buscar</button>
-						</form>	
-					</nav>
-				</ul>
-			</div> 
-			<div>
-				<ul>
-					<ol><a href="{% url 'crear_nota' %}">Crear Nota</a></ol>
-					<a href="{% url 'crear_post' %}"> Crear Post</a>
-				</ul>
-			</div>
-			<div>
-				<ul>
-					<a href="{% url 'listar_destacados' %}">Mis Favoritos</a>
-				</ul>
-			</div>
-			<div>
-				<ol><a href="{% url 'profile' user.username %}">Ver perfil</a></ol>
-				<ol><a href="{% url 'update-profile' %}">Editar perfil</a></ol>
-				<ul><a href="{% url 'listar_destacados' %}">Mis Favoritos</a></ul>
-				<ol><a href="{% url 'Logout' %}">Cerrar Sesión</a></ol>
-			</div>
+						<button type="submit"  id="btt-submit">Buscar</button>
+						</form>	 
+				</li>
+				<li id="crear_post"> <a href="{% url 'crear_post' %}" id="enlace_post"> Crear Post </a></li>
+				<li id="crear_nota"> <a href="{% url 'crear_nota' %}" id="enlace_nota"> Crear Nota </a> </li>
+				<li id="lista_fav">
+					<a href="{% url 'listar_destacados' %}"> 
+						<img src="{% static 'img/icons8-favorite-folder-96.png' %}" width="60px" height="50px">
+					</a>
+				</li>
+				<li id="lista_config">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-support-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-config" >
+						<li><a href="{% url 'update-profile' %}" class="enlace-config"><b>Editar Perfil</b></a></li>
+						<li><a href="{% url 'wall_notas' %}" class="enlace-config"><b>Solo notas</b></a></li>
+					</ul>
 
-			<nav>
-                <ul>
-                    <li>  <a href="{% url 'wall_notas' %}"> Solo Notas </a>   </li>
-                </ul>
 
-            </nav>
-
-		</header>
-	</div>
-
-	<div>
-		{% for post in publicaciones %}
-		<a href="{% url 'profile' post.user.username%}">@{{post.user.username}}</a>
-		<div><h3><a href="{% url 'mostrarDetalle' post.titulo %}">{{post.titulo}}</a></h3></div>
-			{% if post.texto %}
-		<div><p>{{post.texto}}</p></div>
-			{% endif %}
-		<h4><i>Creado : {{post.fecha_creacion|naturaltime}}</i></h4>
-
-		<div>
-			<ol><a href="#">Me gusta</a></ol>
-			<ol><a href="#">Guardar</a></ol>
-			<ol><a href="#">Escribir Comentario</a></ol>
+				</li>
+				<li id="lista_perfil">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-user-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-perfil">
+						<li><a href="{% url 'profile' user.username %}" class="enlace-perfil"><b>Ver Perfil</b></a></li>
+						<li><a href="{% url 'Logout' %}" class="enlace-perfil"><b>Cerrar Sesión</b></a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	{% for post in publicaciones %}
+	<section id="contenedor-p">
+		{% if post.user.profile.image.url %}
+		<div id="img-contenedor" >
+			<a href="{% url 'profile' post.user.username%}"><img src="{{post.user.profile.image.url}}" height="100px" width="100px"></a>
 		</div>
-		{% endfor %}
-	</div>
+		{% else %}
+		<div id="img-contenedor" >
+			<a href="{% url 'profile' post.user.username%}"><img src="{% static 'img/icons8-user-96.png' %}" height="100px" width="100px"></a>
+		</div>
+		{% endif %}
+		<div id="name-contenedor"><i id="name-enlace">@<a href="{% url 'profile' post.user.username%}" >{{post.user.username}}</a></i></div>
 
-	<div>	
-		<footer>
-		<h4><a href="#"> Sharedge </a> <i><b>| Pagina Creada por Fernandez Ian </b></h4></i>
-		<h4>Contacta al creador</h4>
-		<a href="https://www.linkedin.com/in/ian-fern%C3%A1ndez-a72598179/" target="_blank"><img src="	C:\Users\Santiago\Desktop\Imagenes\linked-in-2668696_1280.png" height="50px" width="50px" alt="	Linkedin" title="Icono de Linkedin" ></a>
-		</footer>
-	</div>
+		<div id="titulo-contenedor" ><h3><a href="{% url 'mostrarDetalle' post.titulo %}"> {{post.titulo}} </a></h3></div>
+		{% if post.texto %}
+		<div id="desc-contenedor" ><p id="desc-post">{{post.texto}}</p></div>
+		{% endif %}
+		<div id="contenedor-opc">
+			<ul>
+				<li id="cont-com"><a href="#"><img src="{% static 'img/icons8-comments-96.png' %}" height="35px" width="35px"></a></li>
+
+				<li id="cont-fav"><a href="{%url 'marcar_destacado' post.id  %}"><img src="{% static 'img/icons8-star-96.png' %}" height="35px" width="35px"></a></li>
+			</ul>
+		</div>
+		
+	</section>
+	{% endfor %}
 
 </body>
 </html>

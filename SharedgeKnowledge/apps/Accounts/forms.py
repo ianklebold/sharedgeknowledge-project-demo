@@ -14,6 +14,13 @@ class RegistrationForm(UserCreationForm):
                 'first_name',
                 'last_name']
 
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Ingrese su usuario','title': 'Ingrese su usuario'}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class':'form-control' ,'placeholder':'Correo electronico','title': 'Correo electronico'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control' ,'placeholder':'Ingrese su nombre','title': 'Ingrese su nombre'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control' ,'placeholder':'Ingrese su apellido','title': 'Ingrese su apellido'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control' ,'placeholder':'Ingrese su contraseña','title': 'Ingrese su contraseña'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control' ,'placeholder':'Repita su contraseña','title': 'Repita su contraseña'}))
+
 class UpdateForm(forms.ModelForm):
     #Formulario para registrar una cuenta
     class Meta:
@@ -28,5 +35,7 @@ class UpdateImage(forms.ModelForm):
     class Meta:
         model = Profile
         fields = [
-            'image'
+            'image',
+            'carrera',
+            'estado',
         ]

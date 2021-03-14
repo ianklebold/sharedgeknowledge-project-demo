@@ -1,35 +1,102 @@
-{% load humanize %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{user.username}}</title>
+	
+	<title> SharedgeKnowledge | {{user.username}}</title>
+	<link rel="icon" href="{% static 'img/book-2852903_1920.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_perfil2.css' %}">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700&display=swap" rel="stylesheet">
+	
 </head>
 <body>
-	<h3>Perfil de {{user.username}} </h3>
-	<div> Nombre : {{user.first_name}} </div>
-	<div> Apellido : {{user.last_name}} </div>
-
-	<div>Imagen : <form><img src="{{user.profile.image.url}}" height="100px" width="100px" alt="Imagen Perfil de {{user.username}}" ></form></div>
-	<hr>
-
-	<div>
-		<ul><a href="{% url 'profile_notas' user.username %}"> Mostrar Notas</a>  </ul>
-		{% for post in posts %}
-		<a href="{% url 'profile' post.user.username%}">@{{post.user.username}}</a>
-		<div><h3><a href="{% url 'mostrarDetalle' post.titulo %}">{{post.titulo}}</a></h3></div>
-			{% if post.texto %}
-		<div><p>{{post.texto}}</p></div>
-			{% endif %}
-		<h4><i>Creado : {{post.fecha_creacion|naturaltime}}</i></h4>
-
-		<div>
-			<ol><a href="#">Me gusta</a></ol>
-			<ol><a href="#">Guardar</a></ol>
-			<ol><a href="#">Escribir Comentario</a></ol>
+	
+	<header class="content-header">
+		<div class="wrapper" >
+			<a href="{% url 'profile' user.username %}">
+					{% if user.profile.image.url %}
+						<img src="{{user.profile.image.url}}" alt="perfil de usuario" width="300" height="300" alt="Imagen Perfil de {{user.username}}">
+					{% else %}
+						<img src="{% static 'img/batman.png' %}" alt="perfil de usuario" width="300" height="300" alt="Imagen Perfil de {{user.username}}">
+					{% endif %}
+			</a>
+			<div id="cont-usuario" >@<a href="{% url 'profile' user.username %}">{{user.username}}</a></div>
+			<div id="cont-nom-apell" > {{user.first_name}}, {{user.last_name}} </div>
+			<div id="carrera" > {{user.profile.carrera}} </div>
+			<div class="buttons" >
+				
+				<div class="btn" >
+					<button><a href="{% url 'update-profile' %}" title="Editar perfil">Editar Perfil</a></button>
+				</div>
+				
+			</div>
+	
 		</div>
+	
+		<div class="content">
+			<p>Estoy desde : {{user.profile.joined}} <br> {{user.profile.estado}} </p>
+		
+			<div class="buttons" >
+				<div class="btn" >
+						<button>Editar Estado</button>
+				</div>
+			</div>
+			
+		</div>
+	</header>
+	
+	<section class="menu">
+		
+			<div class="menu-despl">
+				<div class="btt-despl">	
+					<li><a href="{% url 'wall' %}">Ir a pagina principal</a></li>
+					<li><a href="{% url 'crear_post' %}">Nuevo post</a></li>
+					<li><a href="{% url 'crear_nota' %}">Nueva Nota</a></li>
+				
+				</div>
+			</div>
+	
+	</section>
+
+	<section class="seccion-pub">
+		<div class="modo-vista">
+			<a href="{% url 'profile' user.username %}">
+			<div id="modo-post"> <p> Solo POSTS </p></div>
+			</a>
+			<a href="{% url 'profile_notas' user.username %}">
+			<div id="modo-notas"> <p> Solo NOTAS </p></div>
+			</a>
+		</div>
+
+		{% for post in posts %}
+		<section id="contenedor-p">
+			
+			<div id="img-contenedor" >
+				<a href="#"><img src="{{user.profile.image.url}}" height="100px" width="100px"></a>
+			</div>
+			<div id="name-contenedor"><i id="name-enlace">@<a href="{% url 'profile' post.user.username%}" >{{post.user.username}}</a></i></div>
+	
+			<div id="titulo-contenedor" ><h3><a href="{% url 'mostrarDetalle' post.titulo %}">{{post.titulo}}</a></h3></div>
+			{% if post.texto %}
+				<div id="desc-contenedor" ><p id="desc-post">{{post.texto}}</p></div>
+			{% endif %}
+			<div id="contenedor-opc">
+				<ul>
+					<li id="cont-com"><a href="#"><img src="{% static 'img/icons8-comments-96.png' %}" height="35px" width="35px"></a></li>
+	
+					<li id="cont-fav"><a href="{%url 'marcar_destacado' post.id  %}"><img src="{% static 'img/icons8-star-96.png'%}" height="35px" width="35px"></a></li>
+				</ul>
+			</div>
+			
+			</section>
 		{% endfor %}
-	</div>
-
-
+	</section>
+	
 </body>
 </html>

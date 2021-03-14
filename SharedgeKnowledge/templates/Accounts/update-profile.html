@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-			Iniciar en Sharedge | Comparte tu conocimiento	
-
-	</title>
-	<link rel="icon" href="C:\Users\Santiago\Desktop\Imagenes\book-2852903_1920.ico">
+	{% load static %}
+	<title>Iniciar en Sharedge | Actualizar Perfil</title>
+	<link rel="icon" href="{% static 'img/book-2852903_1920.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_forms.css' %}">
 	<meta charset="utf-8">
 	<meta name="keywords" content="apuntes, estudio, materias, estudiar, conocimiento, compartir, iniciar sesion, registrarse, comenzar">
 	<meta name="description" content="Shared Knowledge es una página web que permite encontrar y compartir todo tus conocimientos, con otros estudiantes.Unete a la Red social de apuntes">
@@ -13,32 +12,89 @@
 	<meta name="robots" content="index">
 	<meta name="robots" content="follow">
 	<meta name="robots" content="translate">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700&display=swap" rel="stylesheet">
 </head>
-<body>	
-	<div>
-		<h4>Actualizar perfil</h4>
-		{% if messages %}
-		{% for message in messages %}	
-		<b>{{message}}</b>
-		{% endfor %}
-		{% endif %}
+<body>
+	<header>
+		<nav id="navegador-page">	
+			<ul>
+				<li id="icono_pagina"> 
+					<a href="{% url 'wall' %}" id="enlace_icono">
+						<img src="{% static 'img/icons8-workstation-96.png' %} " width="98px" height="80px">
+					</a>
+				</li>
+				<li id="buscador_header"> 
+						<form method="GET">
+						<div><input type="text" placeholder="Busca por categoria, titulo.." name="buscar"></div>	
+						<button type="submit"  id="btt-submit">Buscar</button>
+						</form>	 
+				</li>
+				<li id="crear_post"> <a href="{% url 'crear_post' %}" id="enlace_post"> Crear Post </a></li>
+				<li id="crear_nota"> <a href="{% url 'crear_nota' %}" id="enlace_nota"> Crear Nota </a> </li>
+				<li id="lista_fav">
+					<a href="{% url 'listar_destacados' %}"> 
+						<img src="{% static 'img/icons8-favorite-folder-96.png' %}" width="60px" height="50px">
+					</a>
+				</li>
+				<li id="lista_config">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-support-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-config" >
+						<li><a href="{% url 'update-profile' %}" class="enlace-config"><b>Editar Perfil</b></a></li>
+						<li><a href="{% url 'wall_notas' %}" class="enlace-config"><b>Solo notas</b></a></li>
+					</ul>
+
+
+				</li>
+				<li id="lista_perfil">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-user-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-perfil">
+						<li><a href="{% url 'profile' user.username %}" class="enlace-perfil"><b>Ver Perfil</b></a></li>
+						<li><a href="{% url 'Logout' %}" class="enlace-perfil"><b>Cerrar Sesión</b></a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<section class="content-mensaje" >
+		<div class="titulo_seccion"><h2>Actualizar Perfil</h2></div>
+		<div class="texto_presentacion"><p>Hazte conocer en la comunidad. Ponte una imagen de perfil, un estado, indica que estudias. Comparte a la comunidad quien eres.</p></div>
+	</section>
+	<section class="content-form" >
 		<form method="POST" enctype="multipart/form-data">
-				{% csrf_token %}
-				<div><b>{{u_fm.username.errors}}</b></div>
-				<div><b>{{u_fm.username.first_name}}</b></div>
-				<div><b>{{u_fm.username.label}}</b> <b>{{u_fm.username}}</b></div>
-				<div><b>{{u_fm.email.errors}}</b></div>
-				<div><b>{{u_fm.email.label}}</b> <b>{{u_fm.email}}</b> </div>
-				<div><b>{{u_fm.first_name.errors}}</b></div>
-				<div><b>{{u_fm.first_name.label}}</b> <b>{{u_fm.first_name}}</b></div>
-				<div><b>{{u_fm.last_name.errors}}</b></div>
-				<div><b>{{u_fm.last_name.label}}</b> <b>{{u_fm.last_name}}</b> </div>
-						{{i_fm.as_p}}
-				<div><a href="{% url 'change-pass'%}">¿Deseas cambiar tu contraseña?</a></div>
-			<div><input type="submit"></div>
-			
-		</form>
-	</div>
+			{% csrf_token %}
+			<label for="Uname" class="nombre_label"  class="type_text">Username</label><br>
+			<input type="text" name="{{u_fm.username.name}}" class="type_text"  value="{{u_fm.username.value}}"><br>
+			<label for="Email" class="nombre_label"  class="type_text">Email</label><br>
+			<input type="email" name="{{u_fm.email.name}}" class="type_text"  value="{{u_fm.email.value}}"><br>
+			<label for="fName" class="nombre_label"  class="type_text">Nombre</label><br>
+			<input type="text" name="{{u_fm.first_name.name}}" class="type_text"  value="{{u_fm.first_name.value}}"><br>
+			<label for="lName" class="nombre_label"  class="type_text">Apellido</label><br>
+			<input type="text" name="{{u_fm.last_name.name}}" class="type_text"  value="{{u_fm.last_name.value}}"><br>
+
+			<label for="imgperf" class="nombre_label">Imagen de perfil:</label><br>
+			<input type="file" name="{{ i_fm.image.name }}" class="type_botton" value="{{ i_fm.image.value }}">{{ i_fm.image.value }}<br>
+
+			<label for="carrera" class="nombre_label"  class="type_text">Estudio la carrera:</label><br>
+			<input type="text" name="{{i_fm.carrera.name}}" class="type_text"  value="{{i_fm.carrera.value}}"><br>
+
+			<label for="estado" class="nombre_label"  class="type_text">Estado:</label><br>
+			<input type="text" name="{{i_fm.estado.name}}" class="type_text"  value="{{i_fm.estado.value}}"><br>
+			<div class="btt_enviar"><input type="submit" value="Actualizar"></div>
+			<div class="nombre_label"><a href="{% url 'change-pass'%}">¿Deseas cambiar tu contraseña?</a></div>
+
+	</section>
+	
 
 </body>
 </html>

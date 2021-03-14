@@ -1,0 +1,67 @@
+body {
+	background-image: url(fondo.png);
+
+}
+h2{
+	font-family: Calibri,Arial;
+	color: #CC2EFA;
+}
+/* Primero sacamos la configuracion predeterminada de una ul */
+ul{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;}
+
+a{
+	font-family: Calibri,Arial;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.enlace_horizontal{
+	color: #FF4000;
+}
+
+.botonera_horiz li a{
+	display: block;
+	height: 30px;
+	width: 200px;
+	margin-bottom: 20px;
+	margin-left: 0.3px;
+	padding-top: 15px;
+	text-align: center;
+	border: 2px #f5da81 solid;
+	background-color:#F3F781;
+	
+}
+
+.botonera_horiz li a:hover{
+	background-color: #f5da81;
+}
+
+.botonera_horiz li {display: inline;}
+.botonera_horiz li .enlace_horizontal{display: inline-block;}
+
+.enlace_vertical{
+	color:#6A0888;
+}
+
+.botonera_vertical li a{
+	display: block;
+	height: 20px;
+	width: 100px;
+	margin-bottom: 20px;
+	text-align: center;
+	padding-top: 13px;
+	padding-bottom: 13px;
+	padding-left: 95px;
+	padding-right: 5px;
+	border: 0.5px #6A0888 solid;
+	background-color: #F5A9E1;
+
+}
+
+.botonera_vertical li a:hover{
+	background-color: #FE2E9A;
+}
+

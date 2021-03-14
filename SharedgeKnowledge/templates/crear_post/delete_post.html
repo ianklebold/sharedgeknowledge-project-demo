@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	{% load static %}
 	<title>Iniciar en Sharedge | Comparte tu conocimiento</title>
-	<link rel="icon" href="C:\Users\Santiago\Desktop\Imagenes\book-2852903_1920.ico">
+	<link rel="icon" href="{% static 'img/book-2852903_1920.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_forms.css' %}">
 	<meta charset="utf-8">
 	<meta name="keywords" content="apuntes, estudio, materias, estudiar, conocimiento, compartir, iniciar sesion, registrarse, comenzar">
 	<meta name="description" content="Shared Knowledge es una página web que permite encontrar y compartir todo tus conocimientos, con otros estudiantes.Unete a la Red social de apuntes">
@@ -10,21 +12,74 @@
 	<meta name="robots" content="index">
 	<meta name="robots" content="follow">
 	<meta name="robots" content="translate">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+	<header>
+		<nav id="navegador-page">	
+			<ul>
+				<li id="icono_pagina"> 
+					<a href="{% url 'wall' %}" id="enlace_icono">
+						<img src="{% static 'img/icons8-workstation-96.png' %} " width="98px" height="80px">
+					</a>
+				</li>
+				<li id="buscador_header"> 
+						<form method="GET">
+						<div><input type="text" placeholder="Busca por categoria, titulo.." name="buscar"></div>	
+						<button type="submit"  id="btt-submit">Buscar</button>
+						</form>	 
+				</li>
+				<li id="crear_post"> <a href="{% url 'crear_post' %}" id="enlace_post"> Crear Post </a></li>
+				<li id="crear_nota"> <a href="{% url 'crear_nota' %}" id="enlace_nota"> Crear Nota </a> </li>
+				<li id="lista_fav">
+					<a href="{% url 'listar_destacados' %}"> 
+						<img src="{% static 'img/icons8-favorite-folder-96.png' %}" width="60px" height="50px">
+					</a>
+				</li>
+				<li id="lista_config">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-support-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-config" >
+						<li><a href="{% url 'update-profile' %}" class="enlace-config"><b>Editar Perfil</b></a></li>
+						<li><a href="{% url 'wall_notas' %}" class="enlace-config"><b>Solo notas</b></a></li>
+					</ul>
+
+
+				</li>
+				<li id="lista_perfil">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-user-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-perfil">
+						<li><a href="{% url 'profile' user.username %}" class="enlace-perfil"><b>Ver Perfil</b></a></li>
+						<li><a href="{% url 'Logout' %}" class="enlace-perfil"><b>Cerrar Sesión</b></a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</header>
 	<div>
-		<h4>Actualizar Post!</h4>
-		{% if messages %}
-						{% for message in messages %}
-						<b>{{message}}</b>
-						{% endfor %}
-		{% endif %}
+
+	<section class="content-mensaje" >
+		<div class="titulo_seccion"><h2>Eliminar Post</h2></div>
+		<div class="texto_presentacion"><p> Todos los enlaces, archivos, post destacados, que fueron asignados a la publiacion serán tambien dadas de baja </p></div>
+	</section>
+	<section class="content-form" >
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
-			<h3>¿Desea eliminar el post : {{post.titulo}} ?</h3>
-			<button type="submit"> Si, Elminalo </button>
-            <a href="{% url 'wall' %}"> Cancelar </a>
+			<p class="nombre_label">¿Desea eliminar el post : <b>{{post.titulo}}</b> ?</p><br>
+			<div class="btt_enviar"><input type="submit" value="Si, Elminalo"> <a href="{% url 'wall' %}" class="nombre_label"> No quiero eliminarlo </a></div>
+			
 		</form>
-	</div>
+	</section>
+
 </body>
 </html>

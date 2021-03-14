@@ -2,39 +2,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Detalle post</title>
+	{% load static %}
+	<title>
+		SharedgeKnowledge | {{publicaciones.titulo}}
+	</title>
+	<link rel="icon" href="C:\Facultad\Desarrollo en programacion WEB\Primer Proyecto\SharedgeKnowledge\templates\img\Icono Sharedge.ico">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_postdetalle.css' %}">
+	<meta charset="utf-8">
+	<meta name="keywords" content="apuntes, estudio, materias, estudiar, conocimiento, compartir">
+	<meta name="description" content="Shared Knowledge es una página web que permite encontrar y compartir todo tus conocimientos, con otros estudiantes.Unete a la Red social de apuntes">
+	<meta name="author" content="Fernández Ian Santiago">
+	<meta name="robots" content="index">
+	<meta name="robots" content="follow">
+	<meta name="robots" content="translate">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital@1&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
 </head>
 <body>
-	<h3>Detalle de la publicacion</h3>
-	<hr>
-	<div> {{publicaciones.titulo}} <strong> creado por : </strong>	@{{publicaciones.user.username}}	</div>
+	<header>
+		<nav id="navegador-page">	
+			<ul>
+				<li id="icono_pagina"> 
+					<a href="{% url 'wall' %}" id="enlace_icono"> 
+						<img src="{% static 'img/icons8-workstation-96.png' %}" width="98px" height="80px">
+					</a>
+				</li>
+				<li id="buscador_header"> 
+						<form method="GET">
+						<div><input type="text" placeholder="Busca por categoria, titulo.." name="buscar"></div>	
+						<button type="submit"  id="btt-submit">Buscar</button>
+						</form>	 
+				</li>
+				<li id="crear_post"> <a href="{% url 'crear_post' %}" id="enlace_post"> Crear Post </a></li>
+				<li id="crear_nota"> <a href="{% url 'crear_nota' %}" id="enlace_nota"> Crear Nota </a> </li>
+				<li id="lista_fav">
+					<a href="{% url 'listar_destacados' %}"> 
+						<img src="{% static 'img/icons8-favorite-folder-96.png' %}" width="60px" height="50px">
+					</a>
+				</li>
+				<li id="lista_config">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-support-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-config" >
+						<li><a href="{% url 'update-profile' %}" class="enlace-config"><b>Editar Perfil</b></a></li>
+						<li><a href="{% url 'wall_notas' %}" class="enlace-config"><b>Solo notas</b></a></li>
+					</ul>
 
-	{%if publicaciones.texto%}
-	<div> {{publicaciones.texto}} </div>
-	{% endif %}
 
-	{%if publicaciones.video%}
-	<div> {{publicaciones.video}} </div>
-	{% endif %}
+				</li>
+				<li id="lista_perfil">
+					<a href="#"> 
+						<img src="{% static 'img/icons8-user-96.png' %}" width="55px" height="55px">
+					</a>
+					<ul class="submenu-perfil">
+						<li><a href="{% url 'profile' user.username %}" class="enlace-perfil"><b>Ver Perfil</b></a></li>
+						<li><a href="{% url 'Logout' %}" class="enlace-perfil"><b>Cerrar Sesión</b></a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<section class="content-post">
+		<div id="content-perfil">
+			
+			<div id="content-nombre" >
+				<div id="content-foto">
+				<a href="{% url 'profile' publicaciones.user.username%}"><img src="{{publicaciones.user.profile.image.url}}" width="40" height="40"></a>
+				</div>
+				<div id="name"><a href="{% url 'profile' publicaciones.user.username%}">@{{publicaciones.user.username}}</a></div>
 
-	{%if publicaciones.enlace_web%}
-	<div> {{detalle_post.enlace_web}}		</div>
-	{% endif %}
+			</div>
+		</div>
+		<div id="content-descripcion">
+			<div id="titulo-post"><p>{{publicaciones.titulo}}</p></div>
+			{%if publicaciones.texto%}
+			<p>	{{publicaciones.texto}}	</p>
+			{% endif %}
+		</div>
 
-	{%if publicaciones.imagen%}
-	<div><form><a href="{{publicaciones.imagen.url}}" ><img src="{{publicaciones.imagen.url}}" alt="esta es una foto"></a></form></div>
-	{% endif %}
-	
-	<div>{{publicaciones.archivo.name}}</div>
-	<div><a href="{{publicaciones.archivo.url}}" enctype="multipart/form-data">Descargá este apunte</a></div>
-	<div> <strong>Categoria : </strong> {{publicaciones.categoria}} | <strong>Publicacion :</strong> <i><time datetime="#"> {{publicaciones.fecha_creacion|naturaltime}}</time></i></div>
+		<div id="content-apunte">
+			<p><i>Descarga el apunte!</i></p>
+			<a href="{{publicaciones.archivo.url}}" enctype="multipart/form-data"><div id="enlace-apunte">Haz click aquí</div></a>
+		</div>
 
+		{%if publicaciones.imagen%}
+		<img src="{{publicaciones.imagen.url}}" alt="esta es una foto" width="460" height="450">
+		{% else %}
+		<img src="{% static 'img/open-book-1417491.jpg'%}" alt="esta es una foto" width="460" height="450">
+		{% endif %}
+
+		{%if publicaciones.enlace_web%}
+		<div id="estilo-enlace" ><p><a href="{{publicaciones.enlace_web}}" target="_black">Enlace web disponible</a></p></div>
+		{% endif %}
+		{%if publicaciones.video%}
+		<div id="estilo-video" ><p><a href="{{publicaciones.video}}" target="_black">Video disponible</a></p></div>
+		{% endif %}
+
+	</section>
+
+
+	<section class="opc-post">
+		<div class="wrapper">
+			<div id="destacar_post">
+				<a href="{%url 'marcar_destacado' publicaciones.id  %}"><img src="{static 'img/icons8-star-96.png'}"></a>
+				<p>Destacá este apunte!</p>
+			</div>
+		</div>
+		
+	</section>
+
+	<section class="datos-extra">
+		<div id="categoria" ><p>Categoria: {{publicaciones.categoria}}</p></div>
+		<div id="fecha_cre" ><p>Fecha creación: {{publicaciones.fecha_creacion|naturaltime}}</p></div>
+	</section>
 	{% if user.username == publicaciones.user.username %}
-	<a href="{%url 'update_post' publicaciones.id %}"> Edita tu post aqui</a>
-	<a href="{%url 'delete_post' publicaciones.id %}"> Eliminar</a>
-	{% else %}
-	<a href="{%url 'marcar_destacado' publicaciones.id  %}"> Guardar en mis favoritos </a>
+	<section class="edicion-post" >
+		<div id="cont_editar" ><a href="{%url 'update_post' publicaciones.id %}">Editar Post</a></div>
+		<div id="cont_eliminar" ><a href="{%url 'delete_post' publicaciones.id %}">Eliminar Post</a></div>
+		
+	</section>
 	{% endif %}
-	<hr>
+
 </body>
 </html>

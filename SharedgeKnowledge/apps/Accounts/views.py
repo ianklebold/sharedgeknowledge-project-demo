@@ -57,4 +57,4 @@ def registration(request):
         
     else:
         fm = RegistrationForm()
-    return render(request,'Accounts/registrarse.html',{'fm':fm})
+    return render(request,'Accounts/Registrarse.html',{'fm':fm})
